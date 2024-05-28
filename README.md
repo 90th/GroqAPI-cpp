@@ -1,5 +1,5 @@
 # GroqAPI
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/90th/GroqAPI-cpp/total) ![GitHub last commit](https://img.shields.io/github/last-commit/90th/GroqAPI-cpp)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/90th/GroqAPI-cpp/latest/total) ![GitHub last commit](https://img.shields.io/github/last-commit/90th/GroqAPI-cpp)
 
 
 GroqAPI-cpp (Groq API Wrapper) is a minimalistic C++ library for easy interaction with the Groq API. It simplifies sending requests, processing responses, and supports multithreading. Ideal for integrating Groq's language processing into C++ applications efficiently. Works seamlessly with C++14 and later versions. 
