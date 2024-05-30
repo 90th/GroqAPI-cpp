@@ -1,4 +1,5 @@
-# GroqAPI
+# GroqAPI <img src="https://teamblindstatics.s3.ap-northeast-1.amazonaws.com/img/companyPage/logo_b43ab7a5952031.jpeg" alt="Logo" width="25" height="25">
+
 ![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/90th/GroqAPI-cpp/latest/total) ![GitHub last commit](https://img.shields.io/github/last-commit/90th/GroqAPI-cpp) ![GitHub Repo stars](https://img.shields.io/github/stars/90th/GroqAPI-cpp)
 
 
