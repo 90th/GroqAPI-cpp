@@ -6,6 +6,7 @@
 #include <winhttp.h>
 #include <iostream>
 #include "nlohmann/json.hpp"
+#include <memory>
 #include <functional>
 #include <mutex>
 
@@ -13,44 +14,32 @@
 
 using json = nlohmann::json;
 
-class ScopeGuard {
-public:
-	explicit ScopeGuard(std::function<void()> onExitScope) : onExitScope_(std::move(onExitScope)), dismissed_(false) {}
-	~ScopeGuard() { if (!dismissed_) onExitScope_(); }
-	void dismiss() { dismissed_ = true; }
+namespace Groq {
+	class GroqApi {
+	public:
+		static GroqApi& GetInstance() {
+			static GroqApi instance;
+			return instance;
+		}
 
-private:
-	std::function<void()> onExitScope_;
-	bool dismissed_;
+		std::string SendChatRequest(const std::string& apiKey, const std::string& model, const std::string& userMessage);
 
-	ScopeGuard(const ScopeGuard&) = delete;
-	ScopeGuard& operator=(const ScopeGuard&) = delete;
-};
+		void PrintChatResponse(const std::string& response);
 
-class GroqApi {
-public:
-	static GroqApi& GetInstance() {
-		static GroqApi instance;
-		return instance;
-	}
+	private:
+		GroqApi() = default;
 
-	std::string SendChatRequest(const std::string& apiKey, const std::string& model, const std::string& userMessage);
+		std::wstring ConvertToWideString(const std::string& str);
 
-	void PrintChatResponse(const std::string& response);
+		void SendRequest(HINTERNET hRequest, const std::wstring& headers, const std::string& requestBody);
 
-private:
-	GroqApi() = default;
+		std::string GetResponse(HINTERNET hRequest);
 
-	std::wstring ConvertToWideString(const std::string& str);
+		std::mutex mutex_;
 
-	void SendRequest(HINTERNET hRequest, const std::wstring& headers, const std::string& requestBody);
-
-	std::string GetResponse(HINTERNET hRequest);
-
-	std::mutex mutex_;
-
-	GroqApi(const GroqApi&) = delete;
-	GroqApi& operator=(const GroqApi&) = delete;
-};
+		GroqApi(const GroqApi&) = delete;
+		GroqApi& operator=(const GroqApi&) = delete;
+	};
+} // namespace Groq
 
 #endif // GROQ_API_HPP
