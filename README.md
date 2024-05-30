@@ -17,6 +17,8 @@ GroqAPI-cpp (Groq API Wrapper) is a minimalistic C++ library for easy interactio
 ## Usage
 
 ```cpp
+#include "GroqAPI.hpp"
+
 int main() {
 	try {
 		std::string apiKey = "groq-api-key";
